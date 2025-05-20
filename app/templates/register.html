@@ -1,7 +1,40 @@
-<h2>Register</h2>
-<form method="POST">
-    Username: <input name="username"><br>
-    Email: <input name="email"><br>
-    Password: <input type="password" name="password"><br>
-    <button type="submit">Register</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for msg in messages %}
+                    <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+   <form method="POST">
+    <label>Username:</label><br>
+    <input type="text" name="username"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password"><br><br>
+
+    <label>Role:</label><br>
+    <select name="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select><br><br>
+
+    <input type="submit" value="Register">
 </form>
+
+    <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>.</p>
+</body>
+</html>

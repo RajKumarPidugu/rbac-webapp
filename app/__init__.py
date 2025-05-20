@@ -2,6 +2,7 @@ from flask import Flask
 from .models import db, User
 from flask_login import LoginManager
 
+
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'your-secret-key'
@@ -18,7 +19,7 @@ def create_app():
         return User.query.get(int(user_id))
 
     from .routes.auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     from .routes.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
