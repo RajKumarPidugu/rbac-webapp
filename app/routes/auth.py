@@ -19,7 +19,12 @@ def login():
             return redirect(url_for('auth.login'))
 
         login_user(user)
-        return redirect(url_for('main.dashboard'))
+        
+        # Redirect based on role
+        if user.role == 'admin':
+            return redirect(url_for('admin_dash.admin_dashboard'))
+        else:
+            return redirect(url_for('user_dash.user_dashboard'))
 
     return render_template('login.html')
 

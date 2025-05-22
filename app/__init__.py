@@ -24,4 +24,11 @@ def create_app():
     from .routes.main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .routes.user_dashboard import user_dash
+    app.register_blueprint(user_dash)
+    
+    from .routes.admin_dashboard import admin_dash
+    app.register_blueprint(admin_dash)
+
+
     return app
